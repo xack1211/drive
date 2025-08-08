@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./drive.png">
-        <title>Cloud Drive</title>
-        <link rel="stylesheet" href="static/style.css">
+    <title>Cloud Drive</title>
+    <link rel="stylesheet" href="static/style.css">
+    <!-- Ubuntu 字体 for EN -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Noto Sans SC/TC Medium -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
         <style>
             .switch-bar {
                 display: flex;
@@ -51,6 +55,35 @@
                 background: #4f8ef7;
                 color: #fff;
             }
+                .center-btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 300px;
+                }
+                .drive-btn {
+                    font-size: 2rem;
+                    padding: 1rem 2.5rem;
+                    border-radius: 2rem;
+                    background: #4f8ef7;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                    transition: background 0.2s;
+                }
+                .drive-btn:hover {
+                    background: #2563eb;
+                }
+            body.en-font {
+                font-family: 'Ubuntu', Arial, sans-serif;
+            }
+            body.sc-font {
+                font-family: 'Noto Sans SC', 'Noto Sans', Arial, sans-serif;
+            }
+            body.tc-font {
+                font-family: 'Noto Sans TC', 'Noto Sans', Arial, sans-serif;
+            }
         </style>
 </head>
 <body>
@@ -73,9 +106,9 @@
             <h2 id="welcome">欢迎访问我的云盘</h2>
             <p id="desc">你可以浏览和下载我的收藏。点击“进入云盘”即可访问 Alist 网盘。</p>
         </section>
-        <section class="embed">
-            <iframe src="http://154.21.200.17:5244/" width="100%" height="600px" style="border:none;"></iframe>
-        </section>
+            <div class="center-btn">
+                <button class="drive-btn" id="gotoDrive">进入云盘</button>
+            </div>
     </main>
     <footer>
     <p id="footer">&copy; 2025 Cloud Drive by xack1211</p>
@@ -106,7 +139,8 @@ const langMap = {
         navDrive: 'Go to Drive',
         welcome: 'Welcome to My Cloud Drive',
         desc: 'You can browse and download my collections. Click "Go to Drive" to access Alist.',
-        footer: '&copy; 2025 Cloud Drive by xack1211'
+        footer: '&copy; 2025 Cloud Drive by xack1211',
+        btn: 'Go to Drive'
     },
     zh: {
         title: '云盘',
@@ -114,7 +148,8 @@ const langMap = {
         navDrive: '进入云盘',
         welcome: '欢迎访问我的云盘',
         desc: '你可以浏览和下载我的收藏。点击“进入云盘”即可访问 Alist 网盘。',
-        footer: '&copy; 2025 云盘 by xack1211'
+        footer: '&copy; 2025 云盘 by xack1211',
+        btn: '进入云盘'
     },
     tc: {
         title: '雲盤',
@@ -122,7 +157,8 @@ const langMap = {
         navDrive: '進入雲盤',
         welcome: '歡迎訪問我的雲盤',
         desc: '你可以瀏覽和下載我的收藏。點擊「進入雲盤」即可訪問 Alist 網盤。',
-        footer: '&copy; 2025 雲盤 by xack1211'
+        footer: '&copy; 2025 雲盤 by xack1211',
+        btn: '進入雲盤'
     }
 };
 function setLang(lang) {
@@ -137,12 +173,27 @@ function setLang(lang) {
     document.getElementById('welcome').textContent = map.welcome;
     document.getElementById('desc').textContent = map.desc;
     document.getElementById('footer').innerHTML = map.footer;
+    document.getElementById('gotoDrive').textContent = map.btn;
+    // 切换字体
+    document.body.classList.remove('en-font', 'sc-font', 'tc-font');
+    if(lang === 'en') {
+        document.body.classList.add('en-font');
+    } else if(lang === 'zh') {
+        document.body.classList.add('sc-font');
+    } else if(lang === 'tc') {
+        document.body.classList.add('tc-font');
+    }
 }
 langEn.onclick = () => setLang('en');
 langZh.onclick = () => setLang('zh');
 langTc.onclick = () => setLang('tc');
 // 初始化语言
 setLang(localStorage.getItem('drive-lang') || 'zh');
+
+        // 跳转按钮事件
+        document.getElementById('gotoDrive').onclick = function() {
+            window.location.href = 'http://154.21.200.17:5244/';
+        };
 </script>
 </body>
 </html>
