@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   FolderIcon,
@@ -67,17 +68,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <nav className="mt-5 px-2 space-y-1">
                   {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                    >
+                    <Link key={item.name} href={item.href} className="group flex items-center px-2 py-2 text-base font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                       <item.icon
                         className="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500 dark:text-gray-300"
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>
@@ -92,17 +89,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <nav className="mt-5 flex-1 px-2 space-y-1">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
-                >
+                <Link key={item.name} href={item.href} className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                   <item.icon
                     className="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-500 dark:text-gray-300"
                     aria-hidden="true"
                   />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

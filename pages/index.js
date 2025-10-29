@@ -5,6 +5,7 @@ import {
   CloudIcon,
   ServerIcon,
 } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 const storageOptions = [
   {
@@ -75,7 +76,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a
+                <Link
                   href={option.href}
                   className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
                 >
@@ -88,7 +89,7 @@ export default function Home() {
                   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
                     {option.description}
                   </p>
-                </a>
+                </Link>
               </motion.div>
             ))}
           </div>
